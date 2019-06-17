@@ -1,0 +1,31 @@
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MMM-dd hh:mm:ss a } %level %c - %m %n" />
+        </Console>
+        <JDBC name="ucandb" tableName="app_logs">
+            <ConnectionFactory
+                class="javalogs2.ConnectionFactory" method="getConnection" />
+            <Column name="log_id" pattern="%u" />
+            <Column name="entry_date" isEventTimestamp="true" />
+            <Column name="logger" pattern="%logger" />
+            <Column name="log_level" pattern="%level" />
+            <Column name="message" pattern="%m" />
+            <Column name="exception" pattern="%throwable " />
+        </JDBC>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.javalogs2.teste" level="debug"
+                additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="ucandb" />
+        </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="ucandb" />
+        </Root>
+    </Loggers>
+
+</Configuration>
