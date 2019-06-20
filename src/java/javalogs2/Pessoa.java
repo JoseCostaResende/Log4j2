@@ -11,6 +11,13 @@ public class Pessoa
     private String apelido;
     private String idade;
 
+    public Pessoa()
+    {
+        nome = "miguel";
+        apelido = "Francisco";
+        idade = "30";
+    }
+
     public String getNome()
     {
         return nome;

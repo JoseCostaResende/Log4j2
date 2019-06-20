@@ -18,8 +18,9 @@ public class LogsBean implements Serializable
 {
 
 //    public static Logger logger = LogManager.getFormatterLogger("Teste");
-    public static Logger logger = LogManager.getLogger("Teste");
+    public static Logger logger = LogManager.getLogger("LogsBean,");
     private Pessoa pessoa = new Pessoa();
+
     private List<Pessoa> pessoas;
 
     public LogsBean()
