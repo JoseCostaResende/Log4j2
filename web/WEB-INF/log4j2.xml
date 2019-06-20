@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE xml>
-<Configuration status="WARN">
-
+<Configuration status="debug">
+    <Properties>
+        <Property name="pattern">%d{dd/MM/yyyy HH:mm:ss,SSS EEEE} %p [%-20c{1}] %m%n</Property>
+        <Property name="filePath">${sys:user.home}</Property>
+    </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
-            <PatternLayout pattern="[%t] ${date:yyyy-MM}-%d{HH:mm:ss.SSS}:%-5level-Classe:%logger{36} - %msg%n"/>
-        </Console>
-        <!--estrutura para inserir no ficheiro-->
-        <File name="File" fileName="/home/jotajota/Desktop/PastaLogs/aplicaoLogs.log">
-            <!--<PatternLayout pattern="${date:yyyy-MM} %d{HH:mm:ss.SSS}  %-2level %logger{36} - %msg%n"/>-->
+        <RollingFile
+            name="RollingFile"
+            fileOwner="root"
+            fileName="${filePath}/Desktop/PastaLogs/meuLog.log"
+            filePattern="${filePath}/Desktop/PastaLogs/meuLog-%d{dd-MM-yyyy-HH:mm:ss}-%i.log">
+            <PatternLayout pattern="${pattern}"/>
+            <Policies>
+                <!--Tamanho maximo do ficheiro de logs-->
+                <SizeBasedTriggeringPolicy size="250 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+            <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+        </RollingFile>
 
-        </File>
+        <Console name="Console">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
     </Appenders>
+
     <Loggers>
-        <Root level="TRACE">
+        <Root level="debug">
+            <AppenderRef ref="RollingFile"/>
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
         </Root>
+
+        <Logger name="org.hibernate" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
     </Loggers>
+
 </Configuration>

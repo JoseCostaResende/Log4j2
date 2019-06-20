@@ -19,7 +19,7 @@
                 <h:inputText value="#{logsBean.pessoa.apelido}"/>
                 <h:outputText value="idade"/>
                 <h:inputText value="#{logsBean.pessoa.idade}"/>
-                <h:commandButton value="Adicionar" action="#{logsBean.adicionarPessoas}"/>
+                <h:commandButton value="Adicionar" action="#{logsBean.adicionarPessoas}" />
             </h:panelGrid>
             <h:dataTable value="#{logsBean.pessoas}" border="1" var="item">
                 <f:facet name="header" >Nome</f:facet>
