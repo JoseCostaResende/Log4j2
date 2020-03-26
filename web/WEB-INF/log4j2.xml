@@ -2,14 +2,14 @@
 <Configuration status="debug">
     <Properties>
         <Property name="pattern">%d{dd/MM/yyyy HH:mm:ss,SSS EEEE} %p [%-20c{1}] %m%n</Property>
-        <Property name="filePath">${sys:user.home}</Property>
+        <!--<Property name="filePath">${sys:user.home}</Property>-->
     </Properties>
     <Appenders>
         <RollingFile
             name="RollingFile"
             fileOwner="root"
-            fileName="${filePath}/Desktop/PastaLogs/meuLog.log"
-            filePattern="${filePath}/Desktop/PastaLogs/meuLog-%d{dd-MM-yyyy-HH:mm:ss}-%i.log">
+            fileName="/home/jotajota/Desktop/SgdmLogs/meuLog.log"
+            filePattern="/home/jotajota/Desktop/SgdmLogs/meuLog-%d{dd-MM-yyyy-HH:mm:ss}-%i.log">
             <PatternLayout pattern="${pattern}"/>
             <Policies>
                 <!--Tamanho maximo do ficheiro de logs-->
